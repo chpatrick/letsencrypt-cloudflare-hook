@@ -18,7 +18,7 @@ import requests
 import sys
 import time
 
-from tld import get_tld
+from tld import get_fld
 
 # Enable verified HTTPS requests on older Pythons
 # http://urllib3.readthedocs.org/en/latest/security.html
@@ -76,8 +76,8 @@ def _has_dns_propagated(name, token):
 
 # https://api.cloudflare.com/#zone-list-zones
 def _get_zone_id(domain):
-    tld = get_tld('http://' + domain)
-    url = "https://api.cloudflare.com/client/v4/zones?name={0}".format(tld)
+    fld = get_fld('http://' + domain)
+    url = "https://api.cloudflare.com/client/v4/zones?name={0}".format(fld)
     r = requests.get(url, headers=CF_HEADERS)
     r.raise_for_status()
     return r.json()['result'][0]['id']
