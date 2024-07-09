@@ -20,6 +20,9 @@ import time
 
 from tld import get_fld
 
+# disable IPv6 as some servers can't connect to the CloudFlare API over it
+requests.packages.urllib3.util.connection.HAS_IPV6 = False
+
 # Enable verified HTTPS requests on older Pythons
 # http://urllib3.readthedocs.org/en/latest/security.html
 if sys.version_info[0] == 2:
